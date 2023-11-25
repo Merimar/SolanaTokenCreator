@@ -1,0 +1,1 @@
+GL hf beim erstellen von Solana coins :)
