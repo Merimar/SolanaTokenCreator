@@ -2,12 +2,14 @@
 
 Projekt erstellt von **Merimar** :shipit:
 
-## Anleitung
-
-Um die Tokens zu erstellen kannst du die Funktionen aus der Utils Klasse benutzen.
+## Disclaimer
 
 > [!WARNING]
 > Erstellen der Tokens auf eigene Gefahr, der Ersteller übernimmt keine Verantwortung für das Erstellen der Tokens!
+
+## Anleitung
+
+Um die Tokens zu erstellen kannst du die Funktionen aus der Utils Klasse benutzen.
 
 _Erstellen eines NFT's_
 
