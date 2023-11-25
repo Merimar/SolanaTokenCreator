@@ -1,9 +1,0 @@
-{
-	"name":"Nestletoken",
-	"symbol":"MT",
-	"seller_fee_basis_points":500,
-	"fee_recipient":"4t21KYbwfurXcx5AYbPVEe3nCCPmG8fijNXLxy8oGd7m",
-	"seller_fee_collection_address":"4t21KYbwfurXcx5AYbPVEe3nCCPmG8fijNXLxy8oGd7m",
-	"image":"https://static.wikia.nocookie.net/gumball/images/f/fc/Gumball_Staffel3.png/revision/latest?cb=20170920120514&path-prefix=de",
-	"seller_fee_burn_address":null
- }
