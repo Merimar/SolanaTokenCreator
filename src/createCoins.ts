@@ -8,7 +8,7 @@ const connection = new Connection(clusterApiUrl("devnet"));
 const onChainMetadata = {
 	name: "Wuhuuu Token",
 	symbol: "WTK",
-	uri: "https://kuy6ey6galpez5c7f4wsdcoi5xxf75jmlds2mawn3sqop2iff6oq.arweave.net/VTHiY8YC3kz0Xy8tIYnI7e5f9SxY5aYCzdyg5-kFL50",
+	uri: "",
 	sellerFeeBasisPoints: 0,
 	creators: null,
 	collection: null,
