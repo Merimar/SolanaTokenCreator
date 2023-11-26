@@ -1,26 +1,16 @@
-import { createNFT, createToken } from "./utils";
-import { Connection, clusterApiUrl, Keypair } from "@solana/web3.js";
-import { DataV2Args } from "@metaplex-foundation/mpl-token-metadata";
-
-//Set these variables
+import { createNFT, createToken, revokeMintAuthority } from "./utils"
+import * as VARS from "./settings"
 import secret from "./id.json"
-const connection = new Connection(clusterApiUrl("devnet"));
-const onChainMetadata = {
-	name: "Wuhuuu Token",
-	symbol: "WTK",
-	uri: "",
-	sellerFeeBasisPoints: 0,
-	creators: null,
-	collection: null,
-	uses: null
-} as DataV2Args;
 
 async function main() {
 	//Create NFT token 
-	await createNFT(secret, connection, "Token Name", "Token URI", 0);
+	//await createNFT(secret, VARS.connection, "Token Name", "Token URI", 0);
 
 	//Create Fungigle Token
-	await createToken(secret, connection, "https://api.devnet.solana.com", onChainMetadata);
+	//await createToken(secret, VARS.connection, VARS.rpcEndpoint, VARS.onChainMetadata);
+
+	//Revoke Mint Authority
+	revokeMintAuthority(secret, VARS.connection, VARS.tokenAddress);
 }
 
 main();

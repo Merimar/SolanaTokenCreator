@@ -3,7 +3,7 @@ import { CreateMetadataAccountV3InstructionAccounts, CreateMetadataAccountV3Inst
 import { createSignerFromKeypair, keypairIdentity as keypairIdentityUMI} from "@metaplex-foundation/umi";
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { publicKey } from "@metaplex-foundation/umi-public-keys";
-import { Connection, clusterApiUrl, Keypair } from "@solana/web3.js";
+import { Connection, clusterApiUrl, Keypair, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
 import * as splToken from "@solana/spl-token";
 
 function sleep(milliseconds: number) {
@@ -42,7 +42,7 @@ export async function createToken(secret: any, connection: Connection, umiSOLEnd
 	console.log("Token created: ", tokenAddress);
 	console.log("Waiting 5 seconds:");
 
-	await sleep(5000);
+	await sleep(10000);
 
 	console.log("Setting metadata ...");
 
@@ -65,4 +65,20 @@ export async function createToken(secret: any, connection: Connection, umiSOLEnd
 
 	const signature = await umi.rpc.sendTransaction(transaction);
     console.log("Metadaten hinzugefügt:", signature);
+}
+
+export async function revokeMintAuthority(secret: any, connection: Connection, tokenMintAddress: string) {
+	const wallet = Keypair.fromSecretKey(new Uint8Array(secret));
+	const tokenMint = new PublicKey(tokenMintAddress);
+	
+	const transactionSignature = await splToken.setAuthority(
+		connection,
+		wallet,
+		tokenMint,
+		wallet.publicKey,
+		splToken.AuthorityType.MintTokens,
+		null
+	  )
+
+	  console.log("Transaction: ", transactionSignature);
 }
