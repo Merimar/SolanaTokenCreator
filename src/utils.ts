@@ -4,6 +4,7 @@ import { createSignerFromKeypair, keypairIdentity as keypairIdentityUMI} from "@
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { publicKey } from "@metaplex-foundation/umi-public-keys";
 import { Connection, clusterApiUrl, Keypair, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
+import { encode, decode } from "bs58"
 import * as splToken from "@solana/spl-token";
 
 function sleep(milliseconds: number) {
@@ -40,7 +41,7 @@ export async function createToken(secret: any, connection: Connection, umiSOLEnd
 	const tokenAddress = publicKey(token);
 
 	console.log("Token created: ", tokenAddress);
-	console.log("Waiting 5 seconds:");
+	console.log("Waiting 10 seconds:");
 
 	await sleep(10000);
 
@@ -70,7 +71,7 @@ export async function createToken(secret: any, connection: Connection, umiSOLEnd
 export async function revokeMintAuthority(secret: any, connection: Connection, tokenMintAddress: string) {
 	const wallet = Keypair.fromSecretKey(new Uint8Array(secret));
 	const tokenMint = new PublicKey(tokenMintAddress);
-	
+
 	const transactionSignature = await splToken.setAuthority(
 		connection,
 		wallet,
@@ -81,4 +82,14 @@ export async function revokeMintAuthority(secret: any, connection: Connection, t
 	  )
 
 	  console.log("Transaction: ", transactionSignature);
+}
+
+export function privateKeyToUINT8Array(privateKey: string) {
+	let secretKey = decode(privateKey);
+	console.log([Keypair.fromSecretKey(secretKey).secretKey]);
+}
+
+export function UINT8ArrayToPrivateKey(array: Uint8Array) {
+	let privateKey = new Uint8Array(array);
+	console.log(encode(privateKey));
 }
